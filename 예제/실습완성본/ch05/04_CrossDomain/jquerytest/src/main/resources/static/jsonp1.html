@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jsonp1</title>
+</head>
+<body>
+	<div id="container">
+		<h2>console을 확인하세요</h2>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+		function test(data) {
+			console.log("## jsonp 개념 이해")
+			console.log(data);
+		}
+	</script>
+	<!-- 
+	<script type="text/javascript" src="http://tfactory.com:8080/contacts?output=json&callback=test"></script>
+	 -->
+	 <script type="text/javascript">
+	 	$.getScript("http://tfactory.com:8080/contacts?output=json&callback=test&pageno=1")
+	 </script>
+</body>
+</html>

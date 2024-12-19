@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+      <typeAlias alias="ConsumerVO" type="com.multi.oauth10server.model.ConsumerVO" />
+      <typeAlias alias="UsersVO" type="com.multi.oauth10server.model.UsersVO" />
+      <typeAlias alias="RequestTokenVO" type="com.multi.oauth10server.model.RequestTokenVO" />
+      <typeAlias alias="OAuthKeyVO" type="com.multi.oauth10server.model.OAuthKeyVO"/>
+   </typeAliases> 
+</configuration>

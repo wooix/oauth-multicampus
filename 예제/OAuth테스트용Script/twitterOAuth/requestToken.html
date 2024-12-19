@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title> Get Request Token</title>
+	<script type="text/javascript" src="js/sha1.js"></script>
+	<script type="text/javascript" src="js/oauth.js"></script>
+	<script type="text/javascript" >
+		var CONSUMER_KEY = "In16iwEzGm6N2wFCV7Ou94qs9";
+		var CONSUMER_SECRET = "vRv70kJmdI1i9TAfqExXFCuUeWuuf2KfVbCGFjbRKL3D4IKuhb";
+	
+		function getRequestToken() {
+			
+			var message = {
+				action: "https://api.twitter.com/oauth/request_token",
+				method: "GET",
+				parameters: {
+					oauth_consumer_key: CONSUMER_KEY,
+					oauth_signature_method: "HMAC-SHA1",
+					//oauth_callback: "http://jcornor.com/TestOAuth/",
+					oauth_callback: "oob",
+					oauth_version : "1.0"
+				}
+			};
+
+			OAuth.setTimestampAndNonce(message);
+			OAuth.SignatureMethod.sign(message, {
+				consumerSecret: CONSUMER_SECRET,
+				tokenSecret : ""
+				});
+			
+			var params = [];
+
+			for(var name in message.parameters) {
+				params.push(name + "=" + 
+				encodeURIComponent(message.parameters[name]));
+			}
+					
+			var url = message.action + "?" + params.join("&");
+
+			//document.getElementById("divRequest").innerHTML = url;
+			if (confirm('전송하시겠습니까?'))
+			{
+				document.write(url);
+				//window.location = url;
+			}
+
+			
+		}
+
+
+	</script>		
+
+</head>
+<body>
+	<button onclick="getRequestToken()"> Get Request Token </button>
+	<div id="divRequest"></div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+server:
+  port: 8000
+
+spring:
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+      - id: rewritepath_route
+        uri: http://tfactory.com:8080
+        predicates:
+        - Path=/api/**
+        filters:
+        - RewritePath=/api/?(?<segment>.*), /$\{segment}

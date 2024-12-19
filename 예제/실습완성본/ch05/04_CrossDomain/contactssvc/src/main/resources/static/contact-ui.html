@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Insert title here</title>
+  <style>
+    table.mytable { width:500px; }
+    table.mytable > thead {   background-color: aqua; }
+    table.mytable > tbody  td { border-bottom: solid 1px gray; padding:3px 10px 3px 10px; }
+    div.myinput { padding-bottom: 3px; }
+    div.box { padding: 20px; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="box">
+      <form id="f1" method="post" action="add.do">
+          <div class="myinput">번호 : <input type="text" id="no" name="no" /></div>
+          <div class="myinput">이름 : <input type="text" id="name" name="name" /></div>
+          <div class="myinput">전화 : <input type="text" id="tel" name="tel" /></div>
+          <div class="myinput">주소 : <input type="text" id="address" name="address" /></div>
+      </form> 
+      <button id="add">추가</button><button id="update">수정</button>
+    </div>
+    <div  style="margin:10px 10px 10px 10px; ">
+      <table class="mytable">
+        <thead>
+          <tr><th>번호</th><th>성명</th><th>전화</th><th>주소</th></tr>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+    </div>
+  </div>
+ 
+  <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript">
+    //var BASEURL = "/contacts";
+    var BASEURL = "http://tfactory.com:8080/contacts";
+
+    
+    function viewContactList () {
+      $("#list").empty();
+      $.ajax({ 
+          type:"GET", url:BASEURL, dataType:"json", contentType:"application/json" 
+      }).done(function(data) {
+        var str = "";
+        for (var i=0; i < data.contacts.length; i++) {
+          var c = data.contacts[i];
+          str += "<tr>";
+          str += "<td>" + c.no + "</td>";
+          str += "<td>" + c.name + "</td>";
+          str += "<td>" + c.tel + "</td>";
+          str += "<td>" + c.address + "</td>";
+          str += "</tr>";
+        }
+        $("#list").append(str);
+      })
+    }
+    
+    $("#update").click(function() {
+        var param = {};
+        param.name = $("#name").val();
+        param.tel = $("#tel").val();
+        param.address = $("#address").val();
+        var url = BASEURL + "/" + $("#no").val();
+        $.ajax({
+          type:"PUT", url:url, data:JSON.stringify(param), contentType:"application/json"
+        }).done(function(data) {
+          if (data.status=="ok") {
+            viewContactList();
+            $("#f1")[0].reset();
+          } else {
+            alert("연락처 수정중  오류 발생 : " + data.message);
+          }
+        })
+    })
+      
+    $("#add").click(function() {
+      var param = {};
+      param.name = $("#name").val();
+      param.tel = $("#tel").val();
+      param.address = $("#address").val();
+      
+      $.ajax({ 
+        type:"POST", url:BASEURL, data:JSON.stringify(param), contentType:"application/json"
+      }).done(function(data) {
+        if (data.status=="ok") {
+          viewContactList();
+          $("#f1")[0].reset();
+        } else {
+          alert("연락처 추가중  오류 발생 : " + data.message);
+        }
+      })
+    })
+    
+    viewContactList();
+  </script>
+</body>
+</html>

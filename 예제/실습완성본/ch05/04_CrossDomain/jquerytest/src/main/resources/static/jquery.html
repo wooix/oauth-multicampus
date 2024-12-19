@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery 예제</title>
+</head>
+<body>
+	<div id="container">
+		<div id="a">jQuery 1</div>
+		<div>jQuery 2</div>
+		<div class="test">jQuery 3</div>
+		<div class="test main">jQuery 4</div>
+		<h3 id="a">jQuery 5</h3>
+		<h3 class="test">jQuery 6</h3>
+		<hr />
+		<h2>한식 리스트</h2><hr />
+		<table id="foods">
+			<thead>
+				<tr>
+					<th>번호</th><th>메뉴</th><th>가격(원)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1001</td><td>짜장면</td><td>7500</td>
+				</tr>
+				<tr>
+					<td>1002</td><td>김밥</td><td>3500</td>
+				</tr>
+				<tr>
+					<td>1003</td><td>불고기덮밥</td><td>9000</td>
+				</tr>
+				<tr>
+					<td>1004</td><td>순두부찌개</td><td>8000</td>
+				</tr>
+				<tr>
+					<td>1005</td><td>삼겹살</td><td>16000</td>
+				</tr>
+				<tr>
+					<td>1006</td><td>된장찌개</td><td>8000</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+		$("#a").css("color", "blue");
+		$(".test").css("border", "solid 1px gray");
+		$("h3").css("background-color", "yellow");
+		
+		//$("#foods > tbody > tr").css("background-color", "aqua");
+		//$("#foods  tr").css("background-color", "aqua");
+		
+		$("#foods > thead > tr").css("background-color", "purple").css("color", "yellow");
+		$("#foods > tbody > tr:even").css("background-color", "aqua");
+		$("#foods > tbody > tr:odd").css("background-color", "#F6E3CE");
+		
+		$("#foods  td:nth-child(3n+1)").css("width", "100px");
+		$("#foods  td:nth-child(3n+2)").css("width", "150px");
+		$("#foods  td:nth-child(3n)").css("width", "200px");
+		
+		$("#foods > tbody > tr").on("click",  function() {
+			var food = $(this).find("td:eq(1)").html();
+			var price = $(this).find("td:last").html();
+			alert(food + "의 가격 : " + price + "원");
+		})
+	</script>
+</body>
+</html>

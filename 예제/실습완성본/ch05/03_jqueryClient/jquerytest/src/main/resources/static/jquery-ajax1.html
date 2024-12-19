@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery ajax 1</title>
+</head>
+<body>
+	<div id="container">
+		<h2>console을 확인하세요</h2>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+		$.ajax({
+			type: "get",
+			url: "https://contactsvc.bmaster.kro.kr/contacts",
+			data: { pageno:1, output:"json" },
+			dataType:"json"
+		})
+		.done(function(data) {
+		 	console.log(data);
+		})
+
+	</script>
+</body>
+</html>

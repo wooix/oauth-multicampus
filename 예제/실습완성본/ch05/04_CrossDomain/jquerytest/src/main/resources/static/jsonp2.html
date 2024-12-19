@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jsonp2</title>
+</head>
+<body>
+	<div id="container">
+		<h2>console을 확인하세요</h2>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+	 	$.ajax({
+	 		type: "get",
+	 		url : "http://tfactory.com:8080/contacts",
+	 		data : { pageno:1, output:"json" },
+	 		dataType:"jsonp",
+	 		jsonp : "callback",
+	 	})
+	 	.done(function(data) {
+	 		console.log("## $.ajax()를 이용한 jsonp 요청");
+	 		console.log(data);
+	 	})
+	</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery ajax 2</title>
+</head>
+<body>
+	<div id="container">
+		<h2>console을 확인하세요</h2>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+		var dataObj = { name:"쯔위", tel:"010-2121-2323", address: "대만" };
+
+		$.ajax({
+			type: "post",
+			//url: "https://contactsvc.bmaster.kro.kr/contacts",
+			url: "http://tfactory.com:8080/contacts",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(dataObj),   
+			dataType:"json"
+		})
+		.done(function(data) {
+		 	console.log(data);
+		})
+
+	</script>
+</body>
+</html>
