@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>console 로그를 확인합시다</h2>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script>
+		function test(data) {
+			console.log("JSONP 개념 이해2");
+			console.log(data);
+		}
+	</script>
+	<!-- script src="https://contactsvc.bmaster.kro.kr/contacts?pageno=1&callback=test"></script-->
+	<script>
+		//$.getScript("https://contactsvc.bmaster.kro.kr/contacts?pageno=1&callback=test");
+		$.ajax({
+			type: "GET",
+			url: "https://contactsvc.bmaster.kro.kr/contacts",
+			data: { pageno:1 },
+			dataType: "jsonp",
+			jsonp: "callback"
+		})
+		.done(function(data) {
+			console.log("## ajax : " , data);
+		})
+		.fail(function(err) {
+			console.log("## error :", err);
+		})
+	</script>
+</body>
+</html>

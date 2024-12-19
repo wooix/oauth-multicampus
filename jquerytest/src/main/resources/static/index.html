@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>console 로그를 확인합시다</h2>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script>
+		//let url = "https://contactsvc.bmaster.kro.kr/contacts"
+		let url = "http://server:8080/contacts"
+		//let url = "/api/contacts"
+		$.ajax({
+			type: "GET",
+			url: url,
+			dataType: "json",
+			data: { pageno:1, pagesize:5 },
+		})
+		.done(function(data) {
+			console.log("## response : " , data);
+		})
+		.fail(function(err) {
+			console.log("## error :", err);
+		})
+/**
+		let obj = { name:"qwer", tel:"010-1111-1111", address:"서울" };
+		$.ajax({
+			type: "POST",
+			url: url,
+			contentType: "application/json",
+			data: JSON.stringify(obj)
+		})
+		.done(function(data) {
+			console.log("## response : " , data);
+		})
+		.fail(function(err) {
+			console.log("## error :", err);
+		})
+		*/
+	</script>
+</body>
+</html>
