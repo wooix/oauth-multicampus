@@ -27,13 +27,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	}
 
 	// 정적자원 추가를 위한 설정
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		// TODO Auto-generated method stub
-//		WebMvcConfigurer.super.addResourceHandlers(registry);
-		registry.addResourceHandler("/photos/**").addResourceLocations("file:///c:/dev/photos/")
-				.setCacheControl(CacheControl.maxAge(Duration.ofDays(1)));
-	}
+//	@Override
+//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//		// TODO Auto-generated method stub
+////		WebMvcConfigurer.super.addResourceHandlers(registry);
+//		registry.addResourceHandler("/photos/**").addResourceLocations("file:///c:/dev/photos/")
+//				.setCacheControl(CacheControl.maxAge(Duration.ofDays(1)));
+//	}
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {

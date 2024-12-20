@@ -3,13 +3,30 @@ package com.multi.contactsapp.domain;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+@Schema(description = "Contacdt 객체 한건을 의미함")
 @JacksonXmlRootElement(localName = "contact")
 public class Contact {
 	@JacksonXmlProperty(isAttribute = true)
+	@Schema(title="일련번호", example="1101")
+	@NotBlank
+	@Size(min=0, max = 999999)
 	private long no;
+		
+	@NotNull
+	@Schema(title="이름", example="이상호")
 	private String name;
+	
 //	@JsonProperty(value="phone")
+	@NotNull
+	@Schema(title = "전화번호", example="010-1234-5678")
 	private String tel;
+	
+	@Schema(title = "주소", example="서울시")
 	private String address;
 
 	// parameter있는 생성자를 만들었다면 기본 생성자를 만들어라. !!!

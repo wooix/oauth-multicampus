@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.multi.oauth20server.dao.ContactRepository;
 import com.multi.oauth20server.domain.Contact;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping(value = "/api")
+@SecurityRequirement(name = "oauth2_client")
 public class ContactController {
 	@Autowired
 	ContactRepository contactRepository;

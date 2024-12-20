@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.multi.oauth20server</groupId>
-	<artifactId>oauth20resourceserver</artifactId>
+	<artifactId>oauth20authserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>oauth20resourceserver</name>
-	<description>jquery test</description>
+	<name>oauth20authserver</name>
+	<description>oauth20 auth server</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -32,7 +32,15 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,28 +64,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-		     <groupId>org.springdoc</groupId>
-     		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-     		<version>2.2.0</version>
-		</dependency>
-		<!-- open api security 관련 문서화를 위해 필요한 의존성 -->
-		<dependency>
-     		<groupId>org.springdoc</groupId>
-		     <artifactId>springdoc-openapi-security</artifactId>
-     		<version>1.8.0</version>
 		</dependency>
 	</dependencies>
 
